@@ -24,11 +24,11 @@ layout: default
 </header>
 
 <div class="container">
-  <div class="row"> 
+  <div class="row">
     <div class="col-sm-4">
     <img class="rounded-circle w-100 h-75" alt="Deepak Nathani" src='{{page.image}}'>
     </div>
-    <div class="col-lg-7 col-md-12 mx-auto"> 
+    <div class="col-lg-7 col-md-12 mx-auto">
       {{ content }}
     </div>
   </div>
