@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Deepak Nathani | a post with formatting and links</title>
+  <title>Deepak Nathani | Pay Attention, Relations are important</title>
   <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 ">
 
@@ -89,33 +89,74 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">a post with formatting and links</h1>
+    <h1 class="post-title">Pay Attention, Relations are important</h1>
     <p class="post-meta">March 15, 2015</p>
   </header>
 
   <article class="post-content">
-    <p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com" target="blank">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice" target="blank">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
+    <p><em>This blog is a work in progress. Please check after few days. Thank you.</em></p>
 
-<h4 id="hipster-list">Hipster list</h4>
-<ul>
-    <li>brunch</li>
-    <li>fixie</li>
-    <li>raybans</li>
-    <li>messenger bag</li>
-</ul>
+<center><img align="middle" src="/assets/img/hulkAttention.jpg" /></center>
+<!-- ![something something blah blah](/assets/img/hulkAttention.jpg) -->
 
-<p>Hoodie Thundercats retro, tote bag 8-bit Godard craft beer gastropub. Truffaut Tumblr taxidermy, raw denim Kickstarter sartorial dreamcatcher. Quinoa chambray slow-carb salvia readymade, bicycle rights 90’s yr typewriter selfies letterpress cardigan vegan.</p>
+<h3 id="overview">Overview</h3>
+<p>In recent years, Knowledge Graphs have been utilized to solve many real world problems such as Semantic Search, Dialogue Generation and Question Answering to name a few. Knowledge Graphs suffer from incompleteness in form of missing entities and relations, which has fueled a lot of research on Knowledge Base completion. Relation prediction is one of the widely used approaches to solve the problem of incompleteness.</p>
 
-<hr />
+<p>Here we will present our ACL 2019 work on <a href="https://arxiv.org/abs/1906.01195">Knowledge Base Attention Network</a>, novel neural network architecture which operates on Knowledge Graphs and learns to extract more expressive feature representations for entities and relations. Our model also addresses the shortcomings of previous methods like ConvKB, ConvE, RGCN, TransE, DistMult and ComplEx.</p>
 
-<p>Pug heirloom High Life vinyl swag, single-origin coffee four dollar toast taxidermy reprehenderit fap distillery master cleanse locavore. Est anim sapiente leggings Brooklyn ea. Thundercats locavore excepteur veniam eiusmod. Raw denim Truffaut Schlitz, migas sapiente Portland VHS twee Bushwick Marfa typewriter retro id keytar.</p>
+<h3 id="graph-convolution-networks">Graph Convolution Networks</h3>
+
+<p>Convolutional Neural Networks (CNNs) have helped in significantly improving the state-of-the-art in Computer Vision research. Image data can be seen as a <em>spatial grid</em> which is highly rigid (each pixel is connected to it’s 8 neighboring pixels). The CNNs exploit the rigidity and regular connectivity pattern of image data and thus gives us an effective and trivial method to implement convolution operator.</p>
+
+<p>Convolution operator in images gathers information from neighboring pixels commensurately. Similar idea is used when defining convolution operation on graphs. <br />
+Now Consider, a graph with <script type="math/tex">n</script> nodes, specified as set of node features <script type="math/tex">\textbf{x} = \{\vec{x}_{1},\vec{x}_{2},...,\vec{x}_{N}\}</script> and the connectivity information in form of adjacency matrix <script type="math/tex">A</script>. A <em>graph convolutional layer</em> then produces a transformed set of node feature vectors <script type="math/tex">\textbf{x}^\prime = \{\vec{x}_{1}^{\prime},\vec{x}_{2}^{\prime},...,\vec{x}_{N}^{\prime}\}</script> based on the structure of the graph and intial embeddings of the entities.</p>
+
+<p>The convolution operation on graph can be summarized with the help of following two operations. First, in order to achieve a higher order representation of nodes, we do a linear transformation parametrized by a weight matrix <script type="math/tex">\textbf{W}</script>. The transformed feature vectors <script type="math/tex">\vec{g_{i}}</script> are given as <script type="math/tex">\vec{g_{i}} = \textbf{W}\vec{x_{i}}</script>. Finally, to get the output features of node <script type="math/tex">i</script>, we will aggregate the features across the neighborhood of the node. Final feature vectors <script type="math/tex">\vec{x^{'}_{i}}</script> can be defined as:</p>
+
+<script type="math/tex; mode=display">\begin{aligned}
+\vec{x_{i}^{\prime}} = \sigma \Bigg( \sum_{j \in \mathcal{N}_{i}} \alpha_{ij} \vec{g_{j}} \Bigg)
+\end{aligned}</script>
+
+<p>where <script type="math/tex">\sigma</script> is an activation function, and <script type="math/tex">\alpha_{ij}</script> specifies the importance of node <script type="math/tex">j^{'}s</script> features to node <script type="math/tex">i</script>. <br />
+In most of the prior works, <script type="math/tex">\alpha_{ij}</script> is defined explicitly, based on structural properties or as a learnable weight.</p>
+
+<p>A single GAT layer can be described as
+\begin{equation}\label{eq:eij}
+ e_{ij} = a(\textbf{W} \vec{x_{i}},\textbf{W} \vec{x_{j}})
+\end{equation}
+where (e_{ij}) is the attention value of the edge ((e_i, e_j)) in $\mathcal{G}$, (\textbf{W}) is a parametrized linear transformation matrix mapping the input features to a higher dimensional output feature space, and (a) is any \emph{attention function} of our choosing.
+%where (a) is an attention mechanism of choice, GAT uses a single layer feed-forward neural network, (e_{ij}) is the attention value of the edge ((e_i, e_j)) in the graph and (\textbf{W}) is a linear transformation matrix used to map the features from input space to output space.</p>
+
+<p>Attention values for each edge are the \textit{importance} of the edge ((e_i, e_j)^{‘})s features for a source node (e_i). Here, the relative attention (\alpha_{ij}) is computed using a \emph{softmax function} over all the values in the neighborhood.
+% as given in equation \ref{eq:alphaij}.
+%\begin{equation}\label{eq:alphaij}
+%\alpha_{ij} = \textrm{softmax}<em>{j} (e</em>{ij})
+%\end{equation}
+Equation \ref{eq:hiprime} shows the output of a layer. GAT employs \emph{multi-head attention} to stabilize the learning process as credited to \cite{NIPS2017<em>7181}.
+\begin{equation}\label{eq:hiprime}
+\vec{x</em>{i}^{\prime}} = \sigma \Bigg( \sum_{j \in \mathcal{N}<em>{i}} \alpha</em>{ij} \textbf{W} \vec{x_{j}} \Bigg)
+\end{equation}
+The multihead attention process of concatenating $K$ attention heads is shown as follows in Equation \ref{eq:hiconcat}.
+\begin{equation}\label{eq:hiconcat}
+ \vec{x_{i}^{\prime}} = \underset{k=1}{\stackrel{K}{\Big \Vert}}  \sigma \Bigg( \sum_{j \in \mathcal{N}<em>{i}} \alpha</em>{ij}^{k} \textbf{W}^{k} \vec{x_{j}} \Bigg)
+\end{equation}
+where $\Vert$ represents concatenation, (\sigma) represents any non-linear function, $\alpha_{ij}^{k}$ are normalized attention coefficients of edge ((e_i, e_j)) calculated by the $k$-th attention mechanism, and (\textbf{W}^k) represents the corresponding linear transformation matrix of the (k)-th
+attention mechanism.
+The output embedding in the final layer is calculated using \emph{averaging}, instead of the concatenation operation, to achieve multi-head attention, as is shown in the following Equation \ref{eq:hisummation}.
+\begin{equation}\label{eq:hisummation}
+ \vec{x_{i}^{\prime}} =   \sigma \Bigg(\frac{1}{K}\sum_{k = 1}^{K}\sum_{j \in \mathcal{N}<em>{i}} \alpha</em>{ij}^{k} \textbf{W}^{k} \vec{x_{j}} \Bigg)
+\end{equation}</p>
+
+<h3 id="attention-networks">Attention Networks</h3>
+
+<h3 id="kbat-knowledge-base-attention-network">KBAT (Knowledge Base Attention) Network</h3>
+
+<p>Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptown vinyl kitsch. Four loko meh 8-bit, tousled banh mi tilde forage Schlitz dreamcatcher twee 3 wolf moon. Chambray asymmetrical paleo salvia, sartorial umami four loko master cleanse drinking vinegar brunch. <a href="https://www.pinterest.com" target="blank">Pinterest</a> DIY authentic Schlitz, hoodie Intelligentsia butcher trust fund brunch shabby chic Kickstarter forage flexitarian. Direct trade <a href="https://en.wikipedia.org/wiki/Cold-pressed_juice" target="blank">cold-pressed</a> meggings stumptown plaid, pop-up taxidermy. Hoodie XOXO fingerstache scenester Echo Park. Plaid ugh Wes Anderson, freegan pug selvage fanny pack leggings pickled food truck DIY irony Banksy.</p>
 
 <blockquote>
     We do not grow absolutely, chronologically. We grow sometimes in one dimension, and not in another, unevenly. We grow partially. We are relative. We are mature in one realm, childish in another.
     —Anais Nin
 </blockquote>
-
-<p>Fap aliqua qui, scenester pug Echo Park polaroid irony shabby chic ex cardigan church-key Odd Future accusamus. Blog stumptown sartorial squid, gastropub duis aesthetic Truffaut vero. Pinterest tilde twee, odio mumblecore jean shorts lumbersexual.</p>
 
   </article>
 
