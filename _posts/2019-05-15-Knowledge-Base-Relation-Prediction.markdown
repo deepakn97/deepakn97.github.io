@@ -16,6 +16,8 @@ In recent years, Knowledge Graphs have been utilized to solve many real world pr
 
 Here we will present our ACL 2019 work on [Knowledge Base Attention Network](https://arxiv.org/abs/1906.01195), novel neural network architecture which operates on Knowledge Graphs and learns to extract more expressive feature representations for entities and relations. Our model also addresses the shortcomings of previous methods like ConvKB, ConvE, RGCN, TransE, DistMult and ComplEx.
 
+The code for this publication is provided [here](https://github.com/deepakn97/relationPrediction). We will discuss how to reproduce the results given in the paper at the end of this post.
+
 ### Graph Convolution Networks
 
 Convolutional Neural Networks (CNNs) have helped in significantly improving the state-of-the-art in Computer Vision research. Image data can be seen as a *spatial grid* which is highly rigid (each pixel is connected to it's 8 neighboring pixels). The CNNs exploit the rigidity and regular connectivity pattern of image data and thus gives us an effective and trivial method to implement convolution operator.
@@ -128,22 +130,29 @@ $$
  \vec{h_{i}^{\prime}} = \underset{m=1}{\stackrel{M}{\Big \Vert}}  \sigma \Bigg( \sum_{j \in \mathcal{N}_{i}} \alpha_{ijk}^{m} c_{ijk}^{m} \Bigg)
 $$
 
+We perform a linear transformation on input *relation embedding* matrix $$ \textbf{G} $$, and get the transformed relation embeddings $$ G^\prime \in \mathbb{R}^{N_r \times T^\prime} $$, where $$ T^\prime $$ is shared output dimensionality of entity and relation embeddings.
 
+$$
+G^{\prime} = G.\textbf{W}^{R}
+$$
 
-This is the \emph{graph attention layer} shown in Figure ~\ref{fig:architecture}.
-We perform a linear transformation on input \emph{relation embedding} matrix \(\textbf{G}\), parameterized by a weight matrix \(\textbf{W}^R \in \mathbb{R}^{T \times T^\prime}\), where \(T^\prime\) is the dimensionality of output \emph{relation embeddings} (Equation~\ref{eq:Rprime}).
-\begin{equation}\label{eq:Rprime}
- G^{\prime} = G.\textbf{W}^{R}
-\end{equation}
-In the final layer of our model, instead of concatenating the embeddings from multiple heads we employ averaging to get final embedding vectors for entities as shown in Equation \ref{eq:hisummationKB}.
-\begin{equation}\label{eq:hisummationKB}
- \vec{h_{i}^{\prime}} =   \sigma \Bigg(\frac{1}{M}\sum_{m = 1}^{M}\sum_{j \in \mathcal{N}_{i}}\sum_{k \in \mathcal{R}_{ij}} \alpha_{ijk}^{m}c_{ijk}^{m} \Bigg)
-\end{equation}
-However, while learning new embeddings, entities lose their initial embedding information. To resolve this issue, we linearly transform \(\textbf{H}^i\) to obtain \(\textbf{H}^t\) using a weight matrix \(\textbf{W}^E \in \mathbb{R}^{T^i \times T^f}\), where \(\textbf{H}^i\) represents the input entity embeddings to our model, \(\textbf{H}^t\) represents the transformed entity embeddings, \(T^i\) denotes the dimension of an initial entity embedding, and \(T^f\) denotes the dimension of the final entity embedding. We add this initial entity embedding information to the entity embeddings obtained from the final attentional layer, \(\textbf{H}^f \in \mathbb{R}^{N_e \times T^f}\) as shown in Equation \ref{eq:final}.
-\begin{equation}\label{eq:final}
+In the Graph Convolution and Graph Attention Networks, its a good practice to add a self loop to every entity so that the information of that entity also plays a role in it's new embeddings. However, if we cannot do the same in Knowledge graphs because adding a self loop means adding a new relation type which does not makes sense. On the other hand, ignoring the previous information stored in the embeddings doesn't seem like a good idea. We resolve this issue by linearly transforming $$ \textbf{H}^i $$ to obtain $$ \textbf{H}^t $$ using a weight matrix $$ \textbf{W}^E \in \mathbb{R}^{T^i \times T^f} $$, where $$ \textbf{H}^i $$ represents the input entity embeddings to our model, $$ \textbf{H}^t $$ represents the transformed entity embeddings, $$ T^i $$ denotes the dimension of an initial entity embedding, and $$ T^f $$ denotes the dimension of the final entity embedding. We add this initial entity embedding information to the entity embeddings obtained from the final attentional layer, $$ \textbf{H}^f \in \mathbb{R}^{N_e \times T^f} $$ as shown below:
+
+$$
  \textbf{H}^{\prime\prime} = \textbf{W}^E \textbf{H}^t + \textbf{H}^{f}
-\end{equation}
-In our architecture, we extend the notion of an \emph{edge} to a \emph{directed path}
-by introducing an auxiliary relation for $n$-hop neighbors between two entities.
-The embedding of this auxiliary relation is the summation of embeddings of all the relations in the path.
-Our model iteratively accumulates knowledge from distant neighbors of an entity. As illustrated in figure \ref{fig:attentionex}, in the first layer of our model, all entities capture information from their \emph{direct in-flowing neighbors}. In the second layer, \textit{U.S} gathers information from entities \textit{Barack Obama, Ethan Horvath, Chevrolet, and Washington D.C}, which already possess information about their neighbors \textit{Michelle Obama} and \textit{Samuel L. Jackson}, from a previous layer. In general, for a $n$ layer model the incoming information is accumulated over a $n$-hop neighborhood. The aggregation process to learn new entity embeddings and the introduction of an auxiliary edge between $n$-hop neighbors is also shown in Figure \ref{fig:attentionex}. We normalize the entity embeddings after every generalized GAT layer and prior to the first layer, for every main iteration.
+$$
+
+With this preceding information, we have succefully defined a Knowledge Base Attention Layer!
+
+### Auxiliary Edges
+
+In our architecture, we extend the notion of an *edge* to a *directed path* by introducing an auxiliary relation for $$ n $$-hop neighbors between two entities. In the current mode, the embedding of this auxiliary relation is the featurewise summation of embeddings of all the relations in the path. However, the summation operation can be replaced with a *max pooling* operation.
+
+<center><img width="600" src="{{ site.baseurl }}/assets/img/attention.jpg"></center>
+<div class="col three caption">
+This figure shows the aggregation process of our graph attentional layer. The dashed lines represent an <i>auxiliary</i> edge from a n-hop neighbors, in this case n = 2.
+</div>
+
+Let's see an easy example how KBAT works. KBAT iteratively accumulates knowledge from distant neighbors of an entity. As illustrated in the image above, in the first layer of this model, all entities capture information from their *direct in-flowing neighbors*. In the second layer, *U.S* gathers information from entities *Barack Obama, Ethan Horvath, Chevrolet, and Washington D.C*, which already possess information about their neighbors *Michelle Obama* and *Samuel L. Jackson*, from a previous layer. In general, for a $$n$$ layer model the incoming information is accumulated over a $$n$$-hop neighborhood. We found that normalizing the entity embeddings after every generalized KBAT layer and prior to the first layer was useful.
+
+### Reproducing the results
