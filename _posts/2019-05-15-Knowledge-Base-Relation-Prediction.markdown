@@ -155,4 +155,40 @@ This figure shows the aggregation process of our graph attentional layer. The da
 
 Let's see an easy example how KBAT works. KBAT iteratively accumulates knowledge from distant neighbors of an entity. As illustrated in the image above, in the first layer of this model, all entities capture information from their *direct in-flowing neighbors*. In the second layer, *U.S* gathers information from entities *Barack Obama, Ethan Horvath, Chevrolet, and Washington D.C*, which already possess information about their neighbors *Michelle Obama* and *Samuel L. Jackson*, from a previous layer. In general, for a $$n$$ layer model the incoming information is accumulated over a $$n$$-hop neighborhood. We found that normalizing the entity embeddings after every generalized KBAT layer and prior to the first layer was useful.
 
+### Is that enough?
+
+We used a decoder network to decode the information collected by KBAT and use that decoded information for the ranking task. We used [ConvKB](https://arxiv.org/abs/1712.02121) as a decoder model. And we found that while KBAT networks does a good job at collecting information from the neighborhood, that information can not be directly used to make amazing predictions. This concludes the explanation of our model, KBAT (The Encoder) and a decoder network (ConvKB in this case).
+
 ### Reproducing the results
+
+In this section we will first summarize how to use KBAT model on new datasets (not available in our github repo). Once we are done with the basic setup and initialization, there will be steps on reproducing the results given in the paper.
+
+1. Let's start with cloning the github [repository](https://github.com/deepakn97/relationPrediction) which contains pytorch implementation of KBAT network.
+    ````
+    $ git clone https://github.com/deepakn97/relationPrediction.git
+    ````
+
+2. If you wish to reuse the dataset provided please feel free to skip to step 4. Now we need to create a new data directory and populate the directory with some important files.
+    * **_entity2id.txt:_** contains mapping of entity names to the id. id starts from 0.
+    * **_relation2id.txt:_** contains mapping of relation names to the id. id starts from 0.
+    * **_train.txt and test.txt:_** contains list of triples in the format _entity1 relation entity2_
+    For better example, please inspect one of the data directories.
+
+3. KBAT network requires to initialize the entity and relation embedding vectors before it can start training. We use [TransE](https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf) embeddings to initialize these vectors. Set of commands given below can be used to get embedding files. For more detailed information please refer [here](https://github.com/datquocnguyen/STransE).
+
+    {% highlight bash %}
+    $ git clone https://github.com/datquocnguyen/STransE.git
+    $ cd ./SOURCE_DIR
+    SOURCE_DIR$ g++ -I ../SOURCE_DIR/ STransE.cpp -o STransE -O2 -fopenmp -lpthread
+    SOURCE DIR$ /STransE -model 1_OR_0 -data CORPUS_DIR_PATH -size <int> -l1 1_OR_0 -margin <double> -lrate <double>
+    {% endhighlight %}
+
+{:start="4"}
+4. Now we have everything in place and we can start training the model. Once the training completes, the model will automatically evaluate it's performance on the given test set. To train the model we need to run _main.py_ using the following command.
+
+  {% highlight python %}
+  $ python3 main.py -data [data_dir]
+  {% endhighlight %}
+To find about all the parameters available please look at the github [repository](https://github.com/deepakn97/relationPrediction). We also provide a values of all the parameters used for producing the results reported in the paper.
+
+For any query or suggestion, please drop a mail at deepakn1019@gmail.com.

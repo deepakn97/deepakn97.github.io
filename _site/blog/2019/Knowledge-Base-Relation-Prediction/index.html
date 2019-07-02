@@ -219,7 +219,46 @@ This figure shows the aggregation process of our graph attentional layer. The da
 
 <p>Let’s see an easy example how KBAT works. KBAT iteratively accumulates knowledge from distant neighbors of an entity. As illustrated in the image above, in the first layer of this model, all entities capture information from their <em>direct in-flowing neighbors</em>. In the second layer, <em>U.S</em> gathers information from entities <em>Barack Obama, Ethan Horvath, Chevrolet, and Washington D.C</em>, which already possess information about their neighbors <em>Michelle Obama</em> and <em>Samuel L. Jackson</em>, from a previous layer. In general, for a <script type="math/tex">n</script> layer model the incoming information is accumulated over a <script type="math/tex">n</script>-hop neighborhood. We found that normalizing the entity embeddings after every generalized KBAT layer and prior to the first layer was useful.</p>
 
+<h3 id="is-that-enough">Is that enough?</h3>
+
+<p>We used a decoder network to decode the information collected by KBAT and use that decoded information for the ranking task. We used <a href="https://arxiv.org/abs/1712.02121">ConvKB</a> as a decoder model. And we found that while KBAT networks does a good job at collecting information from the neighborhood, that information can not be directly used to make amazing predictions. This concludes the explanation of our model, KBAT (The Encoder) and a decoder network (ConvKB in this case).</p>
+
 <h3 id="reproducing-the-results">Reproducing the results</h3>
+
+<p>In this section we will first summarize how to use KBAT model on new datasets (not available in our github repo). Once we are done with the basic setup and initialization, there will be steps on reproducing the results given in the paper.</p>
+
+<ol>
+  <li>Let’s start with cloning the github <a href="https://github.com/deepakn97/relationPrediction">repository</a> which contains pytorch implementation of KBAT network.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ git clone https://github.com/deepakn97/relationPrediction.git
+</code></pre></div>    </div>
+  </li>
+  <li>If you wish to reuse the dataset provided please feel free to skip to step 4. Now we need to create a new data directory and populate the directory with some important files.
+    <ul>
+      <li><strong><em>entity2id.txt:</em></strong> contains mapping of entity names to the id. id starts from 0.</li>
+      <li><strong><em>relation2id.txt:</em></strong> contains mapping of relation names to the id. id starts from 0.</li>
+      <li><strong><em>train.txt and test.txt:</em></strong> contains list of triples in the format <em>entity1 relation entity2</em>
+ For better example, please inspect one of the data directories.</li>
+    </ul>
+  </li>
+  <li>KBAT network requires to initialize the entity and relation embedding vectors before it can start training. We use <a href="https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf">TransE</a> embeddings to initialize these vectors. Set of commands given below can be used to get embedding files. For more detailed information please refer <a href="https://github.com/datquocnguyen/STransE">here</a>.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="nv">$ </span>git clone https://github.com/datquocnguyen/STransE.git
+    <span class="nv">$ </span><span class="nb">cd</span> ./SOURCE_DIR
+    SOURCE_DIR<span class="nv">$ </span>g++ <span class="nt">-I</span> ../SOURCE_DIR/ STransE.cpp <span class="nt">-o</span> STransE <span class="nt">-O2</span> <span class="nt">-fopenmp</span> <span class="nt">-lpthread</span>
+    SOURCE DIR<span class="nv">$ </span>/STransE <span class="nt">-model</span> 1_OR_0 <span class="nt">-data</span> CORPUS_DIR_PATH <span class="nt">-size</span> &lt;int&gt; <span class="nt">-l1</span> 1_OR_0 <span class="nt">-margin</span> &lt;double&gt; <span class="nt">-lrate</span> &lt;double&gt;
+    </code></pre></figure>
+
+<ol start="4">
+  <li>Now we have everything in place and we can start training the model. Once the training completes, the model will automatically evaluate it’s performance on the given test set. To train the model we need to run <em>main.py</em> using the following command.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="err">$</span> <span class="n">python3</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">data</span> <span class="p">[</span><span class="n">data_dir</span><span class="p">]</span>
+  </code></pre></figure>
+
+<p>To find about all the parameters available please look at the github <a href="https://github.com/deepakn97/relationPrediction">repository</a>. We also provide a values of all the parameters used for producing the results reported in the paper.</p>
+
+<p>For any query or suggestion, please drop a mail at deepakn1019@gmail.com.</p>
 
   </article>
 
