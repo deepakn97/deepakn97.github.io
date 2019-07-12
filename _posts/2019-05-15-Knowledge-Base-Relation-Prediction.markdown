@@ -14,13 +14,13 @@ description: Learning Attention-based Embeddings for Relation Prediction in Know
 ### Overview
 In recent years, Knowledge Graphs have been utilized to solve many real world problems such as Semantic Search, Dialogue Generation and Question Answering to name a few. Knowledge Graphs suffer from incompleteness in form of missing entities and relations, which has fueled a lot of research on Knowledge Base completion. Relation prediction is one of the widely used approaches to solve the problem of incompleteness.  
 
-Here we will present our ACL 2019 work on [Knowledge Base Attention Network](https://arxiv.org/abs/1906.01195), novel neural network architecture which operates on Knowledge Graphs and learns to extract more expressive feature representations for entities and relations. Our model also addresses the shortcomings of previous methods like ConvKB, ConvE, RGCN, TransE, DistMult and ComplEx.
+Here we will present our ACL 2019 work on [Knowledge Base Attention Network](https://arxiv.org/abs/1906.01195), novel neural network architecture which operates on Knowledge Graphs and learns to extract more expressive feature representations for entities and relations. Our model also addresses the shortcomings of previous methods like [ConvKB](https://arxiv.org/abs/1712.02121), [ConvE](https://arxiv.org/abs/1707.01476), [RGCN](https://arxiv.org/abs/1703.06103), [TransE](https://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data), [DistMult](https://arxiv.org/pdf/1412.6575.pdf) and [ComplEx](https://arxiv.org/pdf/1606.06357.pdf).
 
 The code for this publication is provided [here](https://github.com/deepakn97/relationPrediction). We will discuss how to reproduce the results given in the paper at the end of this post.
 
 ### Graph Convolution Networks
 
-Convolutional Neural Networks (CNNs) have helped in significantly improving the state-of-the-art in Computer Vision research. Image data can be seen as a *spatial grid* which is highly rigid (each pixel is connected to it's 8 neighboring pixels). The CNNs exploit the rigidity and regular connectivity pattern of image data and thus gives us an effective and trivial method to implement convolution operator.
+Convolutional Neural Networks (CNNs) have helped in significantly improving the state-of-the-art in Computer Vision research. Image data can be seen as a *spatial grid* which is highly rigid (each pixel is connected to it's 8 neighboring pixels). The CNNs exploit the rigidity and regular connectivity pattern of image data and thus give us an effective and trivial method to implement convolution operator.
 
 Convolution operator in images gathers information from neighboring pixels commensurately. Similar idea is used when defining convolution operation on graphs. <br/>
 Now Consider, a graph with $$ n $$ nodes, specified as set of node features $$ \textbf{x} = \{\vec{x}_{1},\vec{x}_{2},...,\vec{x}_{N}\} $$ and the connectivity information in form of adjacency matrix $$ A $$. A *graph convolutional layer* then produces a transformed set of node feature vectors $$ \textbf{x}^\prime = \{\vec{x}_{1}^{\prime},\vec{x}_{2}^{\prime},...,\vec{x}_{N}^{\prime}\} $$ based on the structure of the graph and intial embeddings of the entities.
@@ -190,5 +190,17 @@ In this section we will first summarize how to use KBAT model on new datasets (n
   $ python3 main.py -data [data_dir]
   {% endhighlight %}
 To find about all the parameters available please look at the github [repository](https://github.com/deepakn97/relationPrediction). We also provide a values of all the parameters used for producing the results reported in the paper.
+
+### Citation
+Please cite the following paper if you use this code in your work.
+
+        @InProceedings{KBGAT2019,
+        author = "Nathani, Deepak and Chauhan, Jatin and Sharma, Charu and Kaul, Manohar",
+        title = "Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs",
+        booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+        year = "2019",
+        publisher = "Association for Computational Linguistics",
+        location = "Florence, Italy",
+        }
 
 For any query or suggestion, please drop a mail at deepakn1019@gmail.com.
