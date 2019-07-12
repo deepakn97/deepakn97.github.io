@@ -1,12 +1,9 @@
 ---
 layout: post
 title:  Pay Attention, Relations are important
-date:   2019-05-15 16:40:16
+date:   2019-07-12 16:40:16
 description: Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs
 ---
-
-*This blog is a work in progress. Please check after few days. Thank you.*
-
 
 <center><img align="middle" src="{{ site.baseurl }}/assets/img/hulkAttention.jpg"></center>
 <!-- ![something something blah blah]({{ site.baseurl }}/assets/img/hulkAttention.jpg) -->
