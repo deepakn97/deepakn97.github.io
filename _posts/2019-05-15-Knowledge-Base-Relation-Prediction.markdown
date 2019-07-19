@@ -3,7 +3,7 @@ layout: post
 title:  Pay Attention, Relations are Important
 date:   2019-07-12 16:40:16
 description: Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs
-keywords: Attention, Knowledge Graphs, Machine Learning, Deep Learning, Graphs, Graph Convolution Networks, Attention Networks, Knowledge Base completion, Knowledge Graph completion, Relation Prediction, Link Prediction
+keywords: Attention, Knowledge Graphs, Machine Learning, Deep Learning, Graphs, Graph Convolution Networks, Attention Networks, Knowledge Base completion, Knowledge Graph completion, Relation Prediction, Link Prediction, ACL
 ---
 
 <center><img align="middle" src="{{ site.baseurl }}/assets/img/hulkAttention.jpg"></center>
