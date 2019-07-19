@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs
+title:  Pay Attention, Relations are Important
 date:   2019-07-12 16:40:16
 description: Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs
 ---

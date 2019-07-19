@@ -1,14 +1,15 @@
 # -----------------------------------------------------------------------------
 # Site settings
 # -----------------------------------------------------------------------------
-name: Deepak Nathani
+title: Deepak Nathani
+name: google-site-verification
+content: 3Ly8xTKxqTR_AP3uft5w_uuMqilcbHJPBPUqsZ26Jdg
 email: me15btech11009@iith.ac.in
-description: > # this means to ignore newlines until "url:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+description: > # this means something 
+        A blog dedicated to some things I find interesting, like food, travelling, research and Computer Science Engineering.
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
 
 url:  # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/
@@ -87,6 +88,8 @@ plugins:
     - jekyll-paginate
     - jekyll/scholar
     - jemoji
+    - jekyll-seo-tag
+    - jekyll-sitemap
 
 # Jekyll-Scholar
 scholar:
