@@ -2,11 +2,10 @@
 # Site settings
 # -----------------------------------------------------------------------------
 title: Deepak Nathani
-name: google-site-verification
-content: 3Ly8xTKxqTR_AP3uft5w_uuMqilcbHJPBPUqsZ26Jdg
+name: Deepak Nathani
 email: me15btech11009@iith.ac.in
-description: > # this means something 
-        A blog dedicated to some things I find interesting, like food, travelling, research and Computer Science Engineering.
+description: > # this means to ignore newlines until "url:"
+  A blog dedicated to my insterests like food, travelling and Computer Science.
 footer_text: >
   Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
