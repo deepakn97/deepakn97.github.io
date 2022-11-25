@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2016-01-15 07:59:00-0400
+date: 2019-07-12 10:00:00
 inline: true
 ---
 
-A simple inline announcement with Markdown emoji! :sparkles: :smile:
+The blog for our ACL 2019 paper is now available [here](https://deepakn97.github.io/blog/2019/Knowledge-Base-Relation-Prediction/).

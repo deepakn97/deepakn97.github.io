@@ -2,24 +2,26 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: # <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  address: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+  # address: >
+  #   <p>555 your office number</p>
+  #   <p>123 your address street</p>
+  #   <p>Your City, State 12345</p>
 
 news: true  # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+Hello! I am Deepak Nathani. I am currently a 1st year PhD student at [UC, Santa Barbara](https://www.cs.ucsb.edu/) advised by [Prof. William Wang](https://sites.cs.ucsb.edu/~william/) in the [UCSB NLP](http://nlp.cs.ucsb.edu/) lab. My research 
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+In the past, I have worked as a **Pre-Doctoral Researcher** at [Google Research, India](https://research.google/locations/india/) with [Dr. Partha Talukdar](https://research.google/people/ParthaTalukdar/). At Google, I worked on Controllable Text Generation and Conversational AI. I have also worked as a **Software Engineering AMTS** at [Salesforce.com](https://www.salesforce.com/). 
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I graduated from [IIT Hyderabad](https://iith.ac.in/) with a B.Tech degree in Mechanical Engineering and Computer Science as my second major. During my time as an undergraduate, I worked on various research problems with [Dr. Manohar Kaul](https://manukaul.github.io/).
+
+Among other things, I enjoy playing games, listening to music, reading books and most important of them all, I love food. :wink:
