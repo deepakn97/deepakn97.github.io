@@ -21,9 +21,10 @@
   biburl    = {https://dblp.org/rec/bib/conf/icml/SharmaNK18},
   bibsource = {dblp computer science bibliography, https://dblp.org},
   abstract="We present an alternate formulation of the partial assignment problem as matching random clique complexes, that are higher-order analogues of random graphs, designed to provide a set of invariants that better detect higher-order structure. The proposed method creates random clique adjacency matrices for each k-skeleton of the random clique complexes and matches them, taking into account each point as the affine combination of its geometric neighbourhood. We justify our solution theoretically, by analyzing the runtime and storage complexity of our algorithm along with the asymptotic behaviour of the quadratic assignment problem (QAP) that is associated with the underlying random clique adjacency matrices. Experiments on both synthetic and real-world datasets, containing severe occlusions and distortions, provide insight into the accuracy, efficiency, and robustness of our approach. We outperform diverse matching algorithms by a significant margin.",
-  bibtex_show=true,
   abbr="ICML",
-  pdf="https://arxiv.org/pdf/1907.01739.pdf"
+  arxiv="arxiv:1907.01739",
+  code="https://github.com/charusharma1991/RandomCliqueComplexes_ICML2018",
+  blog="https://medium.com/@charusharma1991/graph-matching-partial-assignment-problem-using-random-clique-complexes-59aef2bf7b57"
 }
 
 @InProceedings{KBGAT2019,
@@ -34,9 +35,10 @@
   publisher = "Association for Computational Linguistics",
   location = "Florence, Italy",
   abstract="The recent proliferation of knowledge graphs (KGs) coupled with incomplete or partial information, in the form of missing relations (links) between entities, has fueled a lot of research on knowledge base completion (also known as relation prediction). Several recent works suggest that convolutional neural network (CNN) based models generate richer and more expressive feature embeddings and hence also perform well on relation prediction. However, we observe that these KG embeddings treat triples independently and thus fail to cover the complex and hidden information that is inherently implicit in the local neighborhood surrounding a triple. To this effect, our paper proposes a novel attention based feature embedding that captures both entity and relation features in any given entity's neighborhood. Additionally, we also encapsulate relation clusters and multihop relations in our model. Our empirical study offers insights into the efficacy of our attention based model and we show marked performance gains in comparison to state of the art methods on all datasets.",
-  bibtex_show=true,
   abbr="ACL",
-  pdf="https://aclanthology.org/P19-1466.pdf"
+  arxiv="arxiv:1906.01195",
+  blog="https://www.dnathani.net/blog/2019/Knowledge-Base-Relation-Prediction/",
+  code="https://github.com/deepakn97/relationPrediction"
 }
 
 @inproceedings{Chauhan2020FEW-SHOT,
@@ -46,9 +48,10 @@
   year="2020",
   url="https://openreview.net/forum?id=Bkeeca4Kvr",
   abstract="We propose to study the problem of few shot graph classification in graph neural networks (GNNs) to recognize unseen classes, given limited labeled graph examples. Despite several interesting GNN variants being proposed recently for node and graph classification tasks, when faced with scarce labeled examples in the few shot setting, these GNNs exhibit significant loss in classification performance. Here, we present an approach where a probability measure is assigned to each graph based on the spectrum of the graphs normalized Laplacian. This enables us to accordingly cluster the graph base labels associated with each graph into super classes, where the Lp Wasserstein distance serves as our underlying distance metric. Subsequently, a super graph constructed based on the super classes is then fed to our proposed GNN framework which exploits the latent inter class relationships made explicit by the super graph to achieve better class label separation among the graphs. We conduct exhaustive empirical evaluations of our proposed method and show that it outperforms both the adaptation of state of the art graph classification methods to few shot scenario and our naive baseline GNNs. Additionally, we also extend and study the behavior of our method to semi supervised and active learning scenarios.",
-  bibtex_show=true,
   abbr="ICLR",
-  pdf="https://arxiv.org/pdf/2002.12815.pdf"
+  arxiv="arxiv:2002.12815",
+  code="https://github.com/chauhanjatin10/GraphsFewShot",
+  blog="https://medium.com/@cs17btech11019/few-shot-learning-on-graphs-f6312a9e9de5"
 }
 
 @InProceedings{10.1007/978-3-030-36687-2_3,
@@ -59,7 +62,6 @@
   publisher="Springer International Publishing",
   pages="27--39",
   abstract="Persistent homology is a powerful tool in Topological Data Analysis (TDA) to capture topological properties of data succinctly at different spatial resolutions. For graphical data, shape and structure of the neighborhood of individual data items (nodes) is an essential means of characterizing their properties. We propose the use of persistent homology methods to capture structural and topological properties of graphs and use it to address the problem of link prediction. We achieve encouraging results on nine different real-world datasets that attest to the potential of persistent homology based methods for network analysis.",
-  bibtex_show = true,
   pdf = "http://sumitbhatia.net/papers/complex-nets-19.pdf"
 }
 
@@ -79,9 +81,11 @@
   doi = "10.18653/v1/2022.acl-long.514",
   pages = "7439--7468",
   abstract = "Style transfer is the task of rewriting a sentence into a target style while approximately preserving content. While most prior literature assumes access to a large style-labelled corpus, recent work (Riley et al. 2021) has attempted {``}few-shot{''} style transfer using only 3-10 sentences at inference for style extraction. In this work we study a relevant low-resource setting: style transfer for languages where no style-labelled corpora are available. We notice that existing few-shot methods perform this task poorly, often copying inputs verbatim. We push the state-of-the-art for few-shot style transfer with a new method modeling the stylistic difference between paraphrases. When compared to prior work, our model achieves 2-3x better performance in formality transfer and code-mixing addition across seven languages. Moreover, our method is better at controlling the style transfer magnitude using an input scalar knob. We report promising qualitative results for several attribute transfer tasks (sentiment transfer, simplification, gender neutralization, text anonymization) all without retraining the model. Finally, we find model evaluation to be difficult due to the lack of datasets and metrics for many languages. To facilitate future research we crowdsource formality annotations for 4000 sentence pairs in four Indic languages, and use this data to design our automatic evaluations.",
-  bibtex_show = true,
   abbr = "ACL",
   pdf = "https://aclanthology.org/2022.acl-long.514.pdf",
+  arxiv="arxiv:2110.07385",
+  website="https://martiansideofthemoon.github.io/2022/03/03/acl22.html",
+  slides="https://docs.google.com/presentation/d/1PGk58vWuHP3FBt8EBA_aN9juo3gPPObAVhshwS3Rpkg/edit?resourcekey=0-Ma8fX94-cdv4SHTIpsFajw#slide=id.p"
 }
 
 @inproceedings{10.1145/3503252.3531301,
@@ -100,7 +104,6 @@
   keywords = {persuasive models, Automated assistant, behavior science, fitness coaching, personalization},
   location = {Barcelona, Spain},
   series = {UMAP '22},
-  bibtex_show = true,
   abbr = "UMAP",
   pdf = "https://dl.acm.org/doi/pdf/10.1145/3503252.3531301",
 }
@@ -113,9 +116,9 @@
   eprint={2310.12426},
   archivePrefix={arXiv},
   primaryClass={cs.CL},
-  bibtex_show = true,
   abbr = "EMNLP",
-  pdf = "https://arxiv.org/pdf/2310.12426.pdf",
+  arxiv="arxiv:2310.12426",
+  code="https://github.com/deepakn97/MAF/tree/main"
 }
 
 @misc{pan2023automatically,
@@ -126,7 +129,6 @@
   eprint={2308.03188},
   archivePrefix={arXiv},
   primaryClass={cs.CL},
-  bibtex_show=true,
   abbr="Arxiv",
   pdf="https://arxiv.org/pdf/2308.03188.pdf"
 }
