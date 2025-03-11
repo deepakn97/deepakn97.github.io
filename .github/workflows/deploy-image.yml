@@ -1,3 +1,5 @@
+# DEPRECATED: This workflow has been replaced by direct-deploy.yml
+
 name: Docker Image CI
 
 on:
