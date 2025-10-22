@@ -145,19 +145,32 @@
   eprint   = {https://direct.mit.edu/tacl/article-pdf/doi/10.1162/tacl\_a\_00660/2369509/tacl\_a\_00660.pdf},
   abbr     = {TACL}
 }
-@misc{nathani2025mlgymnewframeworkbenchmark,
-  title         = {MLGym: A New Framework and Benchmark for Advancing AI Research Agents},
-  author        = {Deepak Nathani and Lovish Madaan and Nicholas Roberts and Nikolay Bashlykov and Ajay Menon and Vincent Moens and Amar Budhiraja and Despoina Magka and Vladislav Vorotilov and Gaurav Chaurasia and Dieuwke Hupkes and Ricardo Silveira Cabral and Tatiana Shavrina and Jakob Foerster and Yoram Bachrach and William Yang Wang and Roberta Raileanu},
-  year          = {2025},
-  eprint        = {2502.14499},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CL},
-  url           = {https://arxiv.org/abs/2502.14499},
-  abbr          = {arXiv},
+
+@inproceedings{
+  nathani2025mlgym,
+  title={{MLG}ym: A New Framework and Benchmark for Advancing {AI} Research Agents},
+  author={Deepak Nathani and Lovish Madaan and Nicholas Roberts and Nikolay Bashlykov and Ajay Menon and Vincent Moens and Mikhail Plekhanov and Amar Budhiraja and Despoina Magka and Vladislav Vorotilov and Gaurav Chaurasia and Dieuwke Hupkes and Ricardo Silveira Cabral and Tatiana Shavrina and Jakob Nicolaus Foerster and Yoram Bachrach and William Yang Wang and Roberta Raileanu},
+  booktitle={Second Conference on Language Modeling},
+  year={2025},
+  url={https://openreview.net/forum?id=ryTr83DxRq},
+  abbr          = {COLM},
   code          = {https://github.com/facebookresearch/MLGym},
-  abstract      = {We introduce Meta MLGym and MLGym-Bench, a new framework and benchmark for evaluating and developing LLM agents on AI research tasks. This is the first Gym environment for machine learning (ML) tasks, enabling research on reinforcement learning (RL) algorithms for training such agents. MLGym-bench consists of 13 diverse and open-ended AI research tasks from diverse domains such as computer vision, natural language processing, reinforcement learning, and game theory. Solving these tasks requires real-world AI research skills such as generating new ideas and hypotheses, creating and processing data, implementing ML methods, training models, running experiments, analyzing the results, and iterating through this process to improve on a given task. We evaluate a number of frontier large language models (LLMs) on our benchmarks such as Claude-3.5-Sonnet, Llama-3.1 405B, GPT-4o, o1-preview, and Gemini-1.5 Pro. Our MLGym framework makes it easy to add new tasks, integrate and evaluate models or agents, generate synthetic data at scale, as well as develop new learning algorithms for training agents on AI research tasks. We find that current frontier models can improve on the given baselines, usually by finding better hyperparameters, but do not generate novel hypotheses, algorithms, architectures, or substantial improvements. We open-source our framework and benchmark to facilitate future research in advancing the AI research capabilities of LLM agents.},
+  abstract      = {We introduce MLGym and MLGym-Bench, a new framework and benchmark for evaluating and developing LLM agents on AI research tasks. This is the first Gym environment for machine learning (ML) tasks, enabling research on reinforcement learning (RL) algorithms for training such agents. MLGym-bench consists of 13 diverse and open-ended AI research tasks from diverse domains such as computer vision, natural language processing, reinforcement learning, and game theory. Solving these tasks requires real-world AI research skills such as generating new ideas and hypotheses,creating and processing data, implementing ML methods, training models, running experiments, analyzing the results, and iterating through this process to improve on a given task. MLGym makes it easy to add new tasks, integrate and evaluate models or agents, generate synthetic data at scale, as well as develop new learning algorithms for training agents on AI research tasks. We evaluate a number of frontier large language models (LLMs) on MLGym-Bench and observe that they can improve on the given baselines, usually by finding better hyperparameters, but do not generate novel hypotheses, algorithms, architectures, or substantial improvements. We open-source our source code1 for MLGym framework, and benchmark to facilitate future research in advancing the AI research capabilities of LLM agents.},
   website       = {https://sites.google.com/view/mlgym},
   discord       = {https://discord.gg/jq442FGSD},
   arxiv         = {arxiv:2502.14499},
   slides        = {https://drive.google.com/file/d/1jyihti9eLdrvnuju8sR8l56GVbv3GdaA/view?usp=drive_link}
+}
+
+@misc{tanwar2025understandingeffectsdomainfinetuning,
+      title={Understanding the Effects of Domain Finetuning on LLMs},
+      author={Eshaan Tanwar and Deepak Nathani and William Yang Wang and Tanmoy Chakraborty},
+      year={2025},
+      eprint={2510.09359},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2510.09359},
+      abbr          = {arXiv},
+      arxiv         = {arxiv:2510.09359},
+      abstract      = {Large Language Models (LLMs) fine-tuned for specific domains exhibit strong performance; however, the underlying mechanisms by which this fine-tuning reshapes their parametric space are not well understood. Prior works primarily focus on auto-regressive or general-purpose instruct models, leaving domain-specialised LLMs under-explored. We present the first systematic study of domain-specific fine-tuning in large medical language models. Our analysis reveals that fine-tuning modifies only a small subset of the representational subspace, essentially preserving the pre-trained model's representation. To interpret these changes in subspaces, we propose tuning vectors, a novel framework inspired by task vectors, which explicitly capture the directional parameter shifts induced by fine-tuning. We demonstrate that these vectors are critical for enhancing both instruction-following and generation quality. Furthermore, combining tuning vectors across different domains yields improved generalisation. Upon closer inspection of directional alignment, we find these vectors primarily write new directional information into the MLP layers of the model, while amplifying existing directions in attention heads. Our findings offer new insights into LLM adaptation and provide a general, interpretable framework for analysing specialisation in large language models.},
 }
